@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    step 1
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img src="{% static "img/icon.svg" %}" id="icon" alt="User Icon" />
+      </div>
+  
+      <!-- Login Form -->
+      <form action="." method="POST">
+        {% csrf_token %}
+        {{ my_form.first_name }}
+        {{ my_form.last_name }}
+        {{ my_form.national_code}}
+        {{ my_form.postal_code}}
+        {{ my_form.phone_number}}
+        {{ my_form.units}}
+        {{ my_form.errors }}
+        <input type="submit" class="fadeIn fourth" value="ثبت درخواست">
+      </form>
+      
+    </div>
+  </div>
+{% endblock content %}

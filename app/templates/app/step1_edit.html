@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    step 1 edit
+{% endblock title %}
+
+
+{% block content %}
+<table class="table table-hover table-dark table-striped"  style="margin-top:0px;">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">نام</th>
+        <th scope="col">نام خانوادگی</th>
+        <th scope="col">کد ملی</th>
+        <th scope="col">کد پستی</th>
+        <th scope="col">شماره تلفن</th>
+        <th scope="col">تعداد واحد ها</th>
+        <th scope="col">تنظیمات</th>
+      </tr>
+    </thead>
+    <tbody>
+     
+        <tr>
+     
+            <th scope="row">1</th>
+            <td>{{ line.first_name }}</td>
+            <td>{{ line.last_name }}</td>
+            <td>{{ line.national_code }}</td>
+            <td>{{ line.postal_code }}</td>
+            <td>{{ line.phone_number }}</td>
+            <td>{{ line.units }}</td>
+            <td>حالت فعلی</td>
+          </tr>
+        
+          <form action="." method="POST">
+        <tr>
+          <th scope="row">2</th>
+           {% csrf_token %}
+          <td>{{ my_form.first_name }}</td>
+          <td>{{ my_form.last_name }}</td>
+          <td>{{ my_form.national_code }}</td>
+          <td>{{ my_form.postal_code }}</td>
+         <td>{{ my_form.phone_number }}</td>
+         <td>{{ my_form.units }}</td>
+         <td>
+            <input type="submit" class="btn btn-primary fadeIn" value="ویرایش درخواست">
+          </td>
+  
+        </tr>
+
+        </form>
+      
+     
+    
+    </tbody>
+  </table>
+
+{% endblock content %}

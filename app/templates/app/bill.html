@@ -1,0 +1,286 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+{{my_user.first_name}} {{my_user.last_name}}
+| مشترک خانگی
+{% endblock title %}
+
+{% block content %}
+
+<div > 
+<div class="container emp-profile">
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-4 ">
+                        <div class="profile-img">
+                            <img src="{% static "img/img_avatar.png" %}" alt=""/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h5>
+                                        {{my_user.first_name}} {{my_user.last_name}}
+                                    </h5>
+                                    <h6>
+                                        مشترک خانگی
+                                    </h6>
+                            <ul class="nav nav-tabs" id="myTab" style="margin-top:95px;" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">مشخصات</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">سابقه</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        {% comment %} <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/> {% endcomment %}
+                        <!-- <a data-toggle="collapse" href="#collapseExample" class="profile-edit-btn btn btn-primary"  style="color:white;" name="btnAddMore" > مشاهده قبوض </a> -->
+                 
+
+                 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-work">
+                                <a  id="collapsebtn" href="#collapseExample"  class="profile-edit-btn btn  btn-primary"  style="color:white; margin-top: 5px; margin-right:10px;" name="btnAddMore" > مشاهده قبوض  </a>
+                                <a  id="collapsebtn" href="#paid"  class="profile-edit-btn btn  btn-primary"  style="color:white; margin-top: 5px; margin-right:10px;" name="btnAddMore" >قبوض پرداختی  </a>
+
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>شماره اشتراک</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{my_user.subscription_number}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>نام</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>
+                                                    {{my_user.first_name}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>نام خانوادگی</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>
+                                                    {{my_user.last_name}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>کد ملی</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>
+                                                
+                                                {{my_user.national_code}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>    
+                                                    آدرس
+                                                </label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>
+                                           {{my_user.address}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>شماره تلفن</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p>
+                                                {{my_user.phone_number}}
+                                                    </p>
+                                                </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label> تاریخ ثبت</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>
+                                                        {{my_user.date}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>تعداد واحد</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p>
+                                        {{my_user.units}}
+                                                    </p>
+                                                </div>
+                                            </div>
+                           
+                                    </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" style="padding-bottom:132px;" aria-labelledby="profile-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>مصرف کلی</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ob.current_num}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>تعداد پرداخت ها</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ num }}</p>
+                                            </div>
+                                        </div>
+                                  
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label> مهلت پرداخت آخرین فیش</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ob.deadline}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>مصرف آخرین فیش</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{diff}}</p>
+                                            </div>
+                                        </div>
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>           
+        </div>
+    </div>
+
+
+
+<div  id="collapseExample" class="animated bounce-in" >
+<div class='bg-dark text-center' style="margin-top:10px; ">
+    <h1 style="color:aliceblue;margin-bottom:0px; " >
+        
+        جدول قبوض</h1>
+  </div>
+
+<table class="table table-hover table-dark table-striped "   >
+    <thead >
+      <tr class="sticky-top">
+        <th scope="col">#</th>
+        <th scope="col"> شناسه اشتراک </th>
+        <th scope="col"> شناسه فیش</th>
+        <th scope="col">قرائت پیشین</th>
+        <th scope="col">قرائت فعلی</th>
+        <th scope="col">رقم پیشین</th>
+        <th scope="col">رقم فعلی</th>
+        <th scope="col">مهلت</th>
+        <th scope="col">وضعیت</th>
+
+
+      </tr>
+    </thead>
+    <tbody>
+     
+        {% for i in list %}
+        <tr>
+   
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>{{ i.subscription_number }}</td>
+      <td>{{ i.bill_ID }}</td>
+      <td>{{ i.previous_date  }}</td>
+      <td>{{ i.current_date  }}</td>
+      <td>{{ i.previous_num }}</td>
+      <td>{{ i.current_num }}</td>
+      <td>
+         {{i.deadline}}
+      </td>
+      {% if i.paid == 'True' %}
+      <td>
+          
+        پرداخت شده
+    </td>
+        {% else %}
+        <td>
+        <a href="{% url 'app:pay' i.subscription_number i.bill_ID %}" class="btn btn-primary">پرداخت</a>
+    </td>
+        {% endif %}
+    </tr>
+
+      {% endfor %}  
+        </form>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+<div  id="paid" class="animated bounce-in" >
+        <div class='bg-dark text-center' style="margin-top:10px; ">
+            <h1 style="color:aliceblue;margin-bottom:0px; " >
+                
+                جدول پرداخت ها</h1>
+          </div>
+        
+        <table class="table table-hover table-dark table-striped "   >
+            <thead >
+              <tr class="sticky-top">
+                <th scope="col">#</th>
+                <th scope="col"> شناسه فیش</th>
+                <th scope="col">مبلغ پرداختی </th>
+                <th scope="col">تاریخ پرداخت </th>
+        
+        
+              </tr>
+            </thead>
+            <tbody>
+             
+                {% for i in plist %}
+                <tr>
+           
+              <th scope="row">{{ forloop.counter }}</th>
+              <td>{{ i.bill_ID }}</td>
+              <td>{{ i.fee  }} ریال</td>
+              <td>{{ i.date  }}</td>
+         
+        
+              {% endfor %}  
+                </form>
+            </tbody>
+          </table>
+        </div>
+
+
+<script>
+    $(document).ready(function(){
+    $("#collapsebtn").click(function(){
+        $("#collapseExample").addClass("display-none-m");
+    })
+})
+</script>
+{% endblock content %}

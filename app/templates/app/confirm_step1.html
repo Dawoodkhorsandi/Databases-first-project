@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  تکمیل اطلاعات
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        {% comment %} <img src="{% static "img/icon.svg" %}" id="icon" alt="User Icon" /> {% endcomment %}
+        <h3 style="padding:12px;">
+            لطفا برای تکمیل اطلاعات آدرس مشترک مورد نظر را وارد کنید.
+        </h3>
+    </div>
+  
+      <!-- Login Form -->
+      <form action="." method="POST">
+        {% csrf_token %}
+        {{ my_form.address }}
+        {{ my_form.errors }}
+        <input type="submit" class="fadeIn fourth" value="ثبت آدرس">
+      </form>
+      
+    </div>
+  </div>
+{% endblock content %}

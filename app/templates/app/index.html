@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+
+ 
+<div class="jumbotron">
+		<h1 class="display-4">
+		سامانه مدیریت امور مشترکین برق
+		</h1>
+		<p class="lead">
+			هنوز اشتراک ندارین؟!
+		<p>
+		</p>
+		<p class="lead">
+		  <a class="btn btn-primary btn-lg" href="{% url 'app:step1' %}" role="button">
+				دریافت اشتراک
+		  </a>
+		<hr class="h4">
+		قبلا درخواست دادید؟! اطلاعات خود را با استفاده از نام یا شماره اشتراک خود جستجو کنید.
+		</p>
+		</div>
+
+		
+		<div class="container">
+				<br/>
+				<div class="row justify-content-center">
+									<div class="col-12 col-md-10 col-lg-8">
+										<form class="card card-sm" method="POST">
+											{% csrf_token %}
+											<div class="card-body row no-gutters align-items-center">
+												<div class="col-auto">
+													<i class="fas fa-search h4 text-body"></i>
+												</div>
+												<!--end of col-->
+												<div class="col">
+													{{ form.text}}
+												</div>
+												<!--end of col-->
+												<div class="col-auto">
+													<button class="btn btn-lg btn-success" type="submit">جستجو کردن</button>
+												</div>
+												<!--end of col-->
+											</div>
+										</form>
+									</div>
+									<!--end of col-->
+								</div>
+			</div>
+
+
+			{% if boolean == True %}
+			<section id="team" class="pb-5" style="margin-top:60px;">
+
+					<div class="container">
+							<h5 class="section-title h1">نتایج جستجو</h5>
+							<div class="row">
+									<h5 class="section-title h1 text-danger " style="text-align:center">
+										هیچ موردی برای شما پیدا نشد!!
+									
+										 </h5>
+
+			
+			</div>
+			</div>
+			</section>
+
+
+			{% elif boolean == False %}	
+				
+<!-- Team -->
+<section id="team" class="pb-5" style="margin-top:60px;">
+
+		<div class="container">
+				<h5 class="section-title h1">نتایج جستجو</h5>
+				<div class="row">
+		{% for client in  clients %}
+
+				<!-- Team member -->
+				<div class="col-xs-12 col-sm-6 col-md-4">
+					<div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+						<div class="mainflip">
+							<div class="frontside">
+								<div class="card">
+									<div class="card-body text-center">
+										<p><img class=" img-fluid" src="{% static "img//img_avatar.png" %}" alt="card image"></p>
+										<h4 class="card-title">{{ client.first_name }} {{ client.last_name }}</h4>
+										<a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus">مشترک</i></a>
+									</div>
+								</div>
+							</div>
+							<div class="backside">
+								<div class="card">
+									<div class="card-body text-center mt-4">
+										<h4 class="card-title">{{ client.first_name }} {{ client.last_name }}</h4>
+										<p class="card-text">
+											مشترک عزیز شما می توانید برای اطلاعات بیشتر به صفحه‌ی شخصی خود مراجعه کنید.
+											
+										</p>	
+											<a class="btn btn-primary" style="color:aliceblue;" href="{% url 'app:bill' client.subscription_number %}">صفحه من</a>
+
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- ./Team member -->
+			
+		
+
+		{% endfor %}
+
+
+		{% for suppliant in  suppliants %}
+
+			
+				<!-- Team member -->
+				<div class="col-xs-12 col-sm-6 col-md-4">
+					<div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+						<div class="mainflip">
+							<div class="frontside">
+								<div class="card">
+									<div class="card-body text-center">
+											<p><img class=" img-fluid" src="{% static "img//img_avatar.png" %}" alt="card image"></p>
+											<h4 class="card-title">{{suppliant.first_name}} {{suppliant.last_name }}</h4>
+										<a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus">متقاضی</i></a>
+									</div>
+								</div>
+							</div>
+							<div class="backside">
+								<div class="card">
+									<div class="card-body text-center mt-4">
+										<h4 class="card-title">{{ suppliant.first_name }} {{ suppliant.last_name }} </h4>
+										<p class="card-text">
+											
+											متقاضی عزیز شما در لیست انتظار می باشید و در خواست شما هنوز مورد بررسی قرار نگرفته است.
+										</p>
+								
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- ./Team member -->
+			
+		
+
+		{% endfor %}
+
+	{% endif %}
+</div>
+</div>
+	</section>
+	<!-- Team -->
+
+
+	
+
+<p id="ffff"></p>
+
+{% endblock content %}

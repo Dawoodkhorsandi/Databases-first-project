@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% load static %}
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>
+        {% block title %}
+          
+        {% endblock title %}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <link rel="stylesheet"  href="{% static "css/bootstrap.min.css" %}" />
+    <link rel="stylesheet" href="{% static "css/rtl.css" %}">
+    <link rel="stylesheet" href="{% static "css/animate.min.css" %}">
+    
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+    
+        <nav class="navbar navbar-dark bg-dark sticky-top ">
+                <a class="navbar-brand" href="{% url 'app:index'  %}">
+                    اداره برق آرکام سیتی
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+          
+                <div class="collapse navbar-collapse" id="navbarsExample01">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="{% url 'app:index'  %}">خانه <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'app:step1'  %}"> ثبت درخواست</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      مدیریت
+                    </a>
+                      <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <a class="dropdown-item" href="{% url 'app:request_table'  %}">جدول درخواست ها</a>
+                        <a class="dropdown-item" href="{% url 'app:confirmed_table'  %}">جدول مشترکین</a>
+                        <a class="dropdown-item" href="{% url 'app:all_bills'  %}">جدول قبوض</a>
+
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+          
+    
+    {% block content %}
+        
+    {% endblock content %}
+
+   {% comment %} <script src="{% static "js/jquery.min.js" %}" ></script> {% endcomment %}
+       {% comment %} <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script> {% endcomment %}
+  	
+	<script src="http://libs.useso.com/js/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+	<script>window.jQuery || document.write('<script src="js/jquery-1.11.0.min.js"><\/script>')</script>
+
+ 
+
+    <script src="{% static "js/popper.min.js" %}" ></script>    
+    <script src="{% static "js/bootstrap.js" %}" ></script>
+    <script src="{% static "js/script.js" %}" ></script>
+</body>
+</html>

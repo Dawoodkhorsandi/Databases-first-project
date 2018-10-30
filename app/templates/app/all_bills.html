@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    تمامی قبوض
+{% endblock title %}
+
+{% block content %}
+
+<div class='bg-dark text-center' style="margin-top:10px; ">
+    <h1 style="color:aliceblue;margin-bottom:0px; " >
+        
+        جدول قبوض</h1>
+  </div>
+
+<table class="table table-hover table-dark table-striped "   >
+    <thead >
+      <tr class="sticky-top">
+        <th scope="col">#</th>
+        <th scope="col"> شناسه اشتراک </th>
+        <th scope="col"> شناسه فیش</th>
+        <th scope="col">قرائت پیشین</th>
+        <th scope="col">قرائت فعلی</th>
+        <th scope="col">رقم پیشین</th>
+        <th scope="col">رقم فعلی</th>
+        <th scope="col">مهلت</th>
+        <th scope="col">وضعیت</th>
+      </tr>
+    </thead>
+    <tbody>
+     
+        {% for i in list %}
+        <tr>
+   
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>{{ i.subscription_number }}</td>
+      <td>{{ i.bill_ID }}</td>
+      <td>{{ i.previous_date  }}</td>
+      <td>{{ i.current_date  }}</td>
+      <td>{{ i.previous_num }}</td>
+      <td>{{ i.current_num }}</td>
+      <td>
+         {{i.deadline}}
+      </td>
+      {% if i.paid == 'True'  %}
+      <td style="color:green;">
+        پرداخت شده
+        {% comment %} {{i.paid}} {% endcomment %}
+      </td>
+     
+      {% else %}
+      <td style="color:red;">
+        پرداخت نشده
+        {% comment %} {{ i.paid }} {% endcomment %}
+      </td>
+      {% endif %}
+    </tr>
+
+      {% endfor %}  
+        </form>
+    </tbody>
+  </table>
+{% endblock content %}

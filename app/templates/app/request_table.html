@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+    جدول درخواست ها
+{% endblock title %}
+
+{% block content %}
+
+
+
+{% comment %} <div class="text-center">
+  <!-- Button HTML (to Trigger Modal) -->
+  <a href="#myModal" class="trigger-btn" data-toggle="modal" style="color:red;">Click to Open Confirm Modal</a>
+</div> {% endcomment %}
+<!-- Modal HTML -->
+
+
+
+<div class='bg-dark text-center' style="margin-top:10px; ">
+  <h1 style="color:aliceblue;margin-bottom:0px; " >جدول متقاضی ها</h1>
+</div>
+<table class="table table-hover table-dark table-striped"  style="margin-top:0px;">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">نام</th>
+        <th scope="col">نام خانوادگی</th>
+        <th scope="col">کد ملی</th>
+        <th scope="col">کد پستی</th>
+        <th scope="col">شماره تلفن</th>
+        <th scope="col">تعداد واحد ها</th>
+        <th scope="col">تنظیمات</th>
+      </tr>
+    </thead>
+    <tbody>
+     
+      
+          {% for i in list %}
+          <tr>
+     
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ i.first_name }}</td>
+        <td>{{ i.last_name }}</td>
+        <td>{{ i.national_code }}</td>
+        <td>{{ i.postal_code }}</td>
+        <td>{{ i.phone_number }}</td>
+        <td>{{ i.units }}</td>
+        <td>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  بیشتر
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item"  href="{% url 'app:confirm_request_step1' i.national_code %}">تایید</a>
+                  <a class="dropdown-item" href="{% url 'app:edit_request' i.national_code %}">ویرایش</a>
+                  <a class="dropdown-item"  href="#myModal{{ forloop.counter }}" class="trigger-btn" data-toggle="modal">حدف</a>
+                </div>
+              </div>
+
+        </td>
+      </tr>
+
+        {% endfor %}
+
+     
+    
+    </tbody>
+  </table>
+
+{% for i in list %}
+<div id="myModal{{forloop.counter}}" class="modal fade">
+    <div class="modal-dialog modal-confirm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="icon-box">
+            <i class="material-icons"><img src="{% static "img/delete.png" %}" width="45" alt=""></i>
+          </div>				
+    
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body">
+            <h4 class="modal-title">
+                آیا می خواهید این رکورد را حذف کنید؟
+      
+            </h4>	
+          <p>
+            توجه: این عمل کاملا غیرقابل بازگشت می باشد.
+          </p>
+        </div>
+        <div class="modal-footer" style="padding-left:45px; padding-left:45px;">
+            <a class="btn btn-danger" href="{% url 'app:delete_request' i.national_code %}" style="color:white;" role="button">حذف شود!</a>
+          <button type="button" class="btn btn-info" data-dismiss="modal">بازگشت</button>
+          
+        </div>
+      </div>
+    </div>
+    </div>     
+
+{% endfor %}
+
+{% endblock content %}
